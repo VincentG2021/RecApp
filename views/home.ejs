@@ -5,10 +5,106 @@
   <meta name="viewport" content="width=device-width,
   initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="static/stylesheets/style.css">
-  <title>Document</title>
+  <link href="static/stylesheets/app.css" rel="stylesheet" type="text/css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+
+  <title>RecApp</title>
+  <link rel="icon" href="static/images/favicon.ico" type="image/png" />
 </head>
+
 <body>
+  <div id="page-wrapper"></div>
+
+    <!-- Header -->
+      <section id="header">
+        </section>
+
+
+
+  <!-- <h1>HELLO SOUND</h1> -->
+
+  <div class="principal">
+    <div class="wrap">
+              <!-- Logo -->
+              <h1 class="blink_me"><a href="#launcher">RecApp</a></h1>
+
+      <form class="formulario" action="">
+        <input type="button" class="boton" id="btn-search" value="Search file">
+        <input type="text" class ="lookinto" id ="lookinto" name="lookinto RecAppdb" placeholder="Look for a file into the RecApp database">
+
+        <input type="button" class="boton" id="btn-agregar" value="Add a new file">
+        <input type="text" id="recInput" placeholder="Write here the file name you would like to add">
+        
+        <input type="button" class="boton" id="btn-load" value="Load a file">
+        <input type="text" class ="ref" id ="ref" name="references" placeholder="File references">
+      </form>
+    </div>
+  </div>
+
+  <div class="tareas">
+    <div class="wrap">
+      <ul class="lista" id="lista">
+       
+      </ul>
+    </div>
+  </div>
+
+  
+
+    <!-- VINYL PLAYER TOOL -->
+
+  <section class="vinyl-wrapper">
+
+      <img class="vinyl-player" src="static/images/vectorplayer.svg" alt=""> 
+
+      <audio controls class="launcher" id="launcher">
+        <source src="https://alanwatts.org/wp-content/uploads/2019/05/Chinese-Farmer.mp3?_=1" type="audio/mpeg"/>
+      </audio>
+  </section>
+
+  <!-- <audio controls class="launcher">
+    <source src="https://alanwatts.org/wp-content/uploads/2019/05/Chinese-Farmer.mp3?_=1" type="audio/mpeg"/>
+  </audio> -->
+
+  <div class="dictaphone-bg">
+  <div class="dictaphone-wrapper">
+
+    <header>
+      <h1>dictaphone</h1>
+    </header>
+
+    <section class="main-controls">
+      <canvas class="visualizer" height="60px"></canvas>
+      <div id="buttons">
+        <button class="record">Record</button>
+        <button class="stop">Stop</button>
+      </div>
+    </section>
+
+    <section class="sound-clips">
+
+
+    </section>
+
+  </div>
+  </div> 
+
+  <label for="toggle">❔</label>
+  <input type="checkbox" id="toggle">
+  <aside>
+    <h2>Information</h2>
+
+    <p>Web dictaphone is built using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getUserMedia">getUserMedia</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MediaRecorder API</a>, which provides an easier way to capture Media streams.</p>
+
+    <p>Icon courtesy of <a href="http://findicons.com/search/microphone">Find Icons</a>. Thanks to <a href="http://soledadpenades.com/">Sole</a> for the Oscilloscope code!</p>
+  </aside>
+
+
 
   <script src="static/scripts/index.js"></script>
+  <script src="static/scripts/app.js"></script>
 </body>
 </html>

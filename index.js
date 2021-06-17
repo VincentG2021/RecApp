@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 
-const myFirstCOntroller = require("./controllers/controller")
+const recController = require("./controllers/controller")
 
 // app setup
 app.use(express.json())
@@ -17,6 +17,16 @@ app.get('/',(req, res) => {
 
 
 // Create here your api setup
+
+app.post('/api/rec/add', (req, res) => {
+  console.log('Hugh fetch ADD from the brain, req.body = ', req.body, 'res = ', res)
+  recController.addRecDB(req.body)
+})
+
+app.post('/api/rec/load', (req,res) => {
+  console.log("Hugh fetch LOAD from the brain")
+  recController.loadRec(res)
+})
 
 
 
