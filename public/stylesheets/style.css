@@ -138,16 +138,6 @@ body {
   justify-content: center;
 }
 
-#btn-play {
-  position: absolute;
-  width: 10rem;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
 /* launcher properties were :
   width: 108px
   height:108px 

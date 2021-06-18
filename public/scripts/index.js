@@ -1,3 +1,4 @@
+
 // FRONT END FILE TO INTERACT WITH THE DOM
 
 // const searchRecBtn = document.getElementById('btn-search');
@@ -45,8 +46,19 @@ const sendRecToServer = (rec) => {
   }
 
   const selectAllRec = () => {
-    allRec = document.querySelectorAll('#lista li')
+    allRec = document.querySelectorAll('.rec-url')
     console.log(allRec)
+    allRec.forEach((recbtn)=>{
+      recbtn.addEventListener("click", (event) =>{
+        console.log("audio url ready to play")
+        let selectvinyl = document.querySelector('.vinyl-wrapper')
+        selectvinyl.insertAdjacentHTML("beforeend", `
+        <audio controls class="launcher" id="launcher">
+        <source id="play-source" src=${recbtn.dataset.url} type="audio/mpeg"/>
+      </audio>
+        `)
+      })
+    })
     // addEventToAllRec(allRec)
     // addEventToAllDeleteBtns(allRec)
   }
@@ -75,14 +87,10 @@ const sendRecToServer = (rec) => {
               <div class="header">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                 
-                <h1 class="rec-name">${rec.Name}
-                <input type="button" class="playchoice" id="playchoice" value="Play">
-                <a class="rec-url" id="rec-url" href=${rec.url} alt="">Play</a>
-                </h1>
-              </div>
-              <div class="btn_row">
-                <a href="#" id=${rec.ID} class="card-action">Add to RecAppDB<i class="fa fa-caret-right" aria-hidden="true"></i>
-                </a>
+                <h1 class="rec-infos">
+                <div class="rec-url" data-url=${rec.url}>Play</div>
+                ${rec.Name}
+                </h1> 
               </div>
             </div>
           </div>
@@ -96,33 +104,6 @@ const sendRecToServer = (rec) => {
     });
   }
 
-
-//   let recCard = `<section>
-//           <div id="card" class="card" data-img=${rec.Content} style="background-image: url(${rec.Content})">
-//             <div class="inner">
-//               <div class="header">
-//                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-//                 <h1 class="main-title">${rec.Title}</h1>
-//                 <div class="stars">
-//                   <i class="fa fa-star" aria-hidden="true"></i>
-//                   <i class="fa fa-star" aria-hidden="true"></i>
-//                   <i class="fa fa-star" aria-hidden="true"></i>
-//                   <i class="fa fa-star" aria-hidden="true"></i>
-//                   <i class="fa fa-star-half" aria-hidden="true"></i>
-//                 </div>
-//               </div>
-//               <div class="content">
-//                 <p class="type">${rec.Type}</p>
-//                 <a class="year" href="#">${rec.Year}</a>
-//               </div>
-//               <div class="btn_row">
-//                 <a href="#" id=${rec.imdbID} class="card-action">Add to my DB<i class="fa fa-caret-right" aria-hidden="true"></i>
-//                 </a>
-//               </div>
-//             </div>
-//             <!-- the trailer -->
-//           </div>
-//         </section>`
 let searchRecBtn = document.getElementById('btn-search');
 
 searchRecBtn.addEventListener('click', (event) => {
@@ -154,34 +135,7 @@ loadRecBtn.addEventListener('click', (event) => {
     let reffromUser = document.getElementById('ref').value;
     console.log(reffromUser);
     loadreffromDB();
-    listContainer.insertAdjacentHTML('beforeend', `<li><a href="#">${reffromUser}</a></li>`)
+    
     // inputFromTheUser.value = "";
     alert('enjoy !');
 })
-
-// let cards = document.querySelectorAll('.card')
-// let addtoRecAppDBbtn = card.querySelector('.card-action')
-
-// addtoRecAppDBbtn.addEventListener('click', (event) => {
-//     console.log('play !');
-// })
-
-let selectPlaySource = document.getElementById('btn-play');
-selectPlaySource.addEventListener('click', (event) => {
-  console.log("playing");
-});
-
-
-
-
-// const playlink = document.querySelector('a.rec-url');
-
-// playlink.addEventListener('click', (event) => {
-//     console.log('play !');
-    // let reffromUser = document.getElementById('ref').value;
-    // console.log(reffromUser);
-    // loadreffromDB();
-    // listContainer.insertAdjacentHTML('beforeend', `<li><a href="#">${reffromUser}</a></li>`)
-    // // inputFromTheUser.value = "";
-    // alert('enjoy !');
-// })
