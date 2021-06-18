@@ -19,8 +19,8 @@ app.get('/',(req, res) => {
 // Create here your api setup
 
 app.post('/api/rec/add', (req, res) => {
-  console.log('Hugh fetch ADD from the brain, req.body = ', req.body, 'res = ', res)
-  recController.addRecDB(req.body)
+  console.log('Hugh fetch ADD from the brain, req.body = ', req.body)
+  recController.addRecAppDB(req.body)
 })
 
 app.post('/api/rec/load', (req,res) => {

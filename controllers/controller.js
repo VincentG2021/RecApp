@@ -3,15 +3,15 @@ const sqlite3 = require('sqlite3').verbose();
 // BACKEND FILE FOR MY DATABASES QUERIES
 
 let db = new sqlite3.Database('./db/db.myrecs');
-db.run("CREATE TABLE IF NOT EXISTS recs (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Content BLOB)");
+db.run("CREATE TABLE IF NOT EXISTS recs (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, url TEXT, Content BLOB)");
 
 const addRecAppDB = (reccontrol, res) =>{
     // code to add to the database
-      console.log("ok from controllers addRecAppDB, new rec added :" )
+      console.log("ok from controllers addRecAppDB, new rec added")
       let db = new sqlite3.Database('./db/db.myrecs');
   
     // insert one row into the langs table
-      db.run(`INSERT INTO rec(Name) VALUES(?)`, [reccontrol.input], function(err) {
+      db.run(`INSERT INTO recs(Name, url) VALUES(?, ?)`, [reccontrol.input, "https://res.cloudinary.com/dlqnpg3s2/video/upload/v1623955818/sounds/gtr_dec2020_z8txiu.mp3"], function(err) {
         if (err) {
           return console.log(err.message);
         }

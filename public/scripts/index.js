@@ -51,6 +51,12 @@ const sendRecToServer = (rec) => {
     // addEventToAllDeleteBtns(allRec)
   }
 
+
+
+{/* <li data-id=${rec.ID}>
+<a href="#">${rec.ID} ${rec.Name} ${rec.url}</a></li> */}
+
+
   const loadreffromDB = () => {
     fetch('api/rec/load', {
       method: 'POST',
@@ -63,7 +69,25 @@ const sendRecToServer = (rec) => {
         // list.innerHTML="";
         console.log('Success loadreffromDB client js :', data);
         data.recKey.forEach((rec) => {
-          listContainer.insertAdjacentHTML('beforeend', `<li data-id=${rec.id}><a href="#">${rec.Title}</a></li>`)
+            let recCard = `<section class="recCards">
+            <div id="card" data-id=${rec.ID} class="card">
+            <div class="inner">
+              <div class="header">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                
+                <h1 class="rec-name">${rec.Name}
+                <input type="button" class="playchoice" id="playchoice" value="Play">
+                <a class="rec-url" id="rec-url" href=${rec.url} alt="">Play</a>
+                </h1>
+              </div>
+              <div class="btn_row">
+                <a href="#" id=${rec.ID} class="card-action">Add to RecAppDB<i class="fa fa-caret-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          </section>`
+          listContainer.insertAdjacentHTML('beforeend', recCard)
         })
         selectAllRec()
     })
@@ -73,32 +97,32 @@ const sendRecToServer = (rec) => {
   }
 
 
-  // let recCard = `<section>
-  //         <div id="card" class="card" data-img=${rec.Content} style="background-image: url(${rec.Content})">
-  //           <div class="inner">
-  //             <div class="header">
-  //               <i class="fa fa-info-circle" aria-hidden="true"></i>
-  //               <h1 class="main-title">${rec.Title}</h1>
-  //               <div class="stars">
-  //                 <i class="fa fa-star" aria-hidden="true"></i>
-  //                 <i class="fa fa-star" aria-hidden="true"></i>
-  //                 <i class="fa fa-star" aria-hidden="true"></i>
-  //                 <i class="fa fa-star" aria-hidden="true"></i>
-  //                 <i class="fa fa-star-half" aria-hidden="true"></i>
-  //               </div>
-  //             </div>
-  //             <div class="content">
-  //               <p class="type">${rec.Type}</p>
-  //               <a class="year" href="#">${rec.Year}</a>
-  //             </div>
-  //             <div class="btn_row">
-  //               <a href="#" id=${rec.imdbID} class="card-action">Add to my DB<i class="fa fa-caret-right" aria-hidden="true"></i>
-  //               </a>
-  //             </div>
-  //           </div>
-  //           <!-- the trailer -->
-  //         </div>
-  //       </section>`
+//   let recCard = `<section>
+//           <div id="card" class="card" data-img=${rec.Content} style="background-image: url(${rec.Content})">
+//             <div class="inner">
+//               <div class="header">
+//                 <i class="fa fa-info-circle" aria-hidden="true"></i>
+//                 <h1 class="main-title">${rec.Title}</h1>
+//                 <div class="stars">
+//                   <i class="fa fa-star" aria-hidden="true"></i>
+//                   <i class="fa fa-star" aria-hidden="true"></i>
+//                   <i class="fa fa-star" aria-hidden="true"></i>
+//                   <i class="fa fa-star" aria-hidden="true"></i>
+//                   <i class="fa fa-star-half" aria-hidden="true"></i>
+//                 </div>
+//               </div>
+//               <div class="content">
+//                 <p class="type">${rec.Type}</p>
+//                 <a class="year" href="#">${rec.Year}</a>
+//               </div>
+//               <div class="btn_row">
+//                 <a href="#" id=${rec.imdbID} class="card-action">Add to my DB<i class="fa fa-caret-right" aria-hidden="true"></i>
+//                 </a>
+//               </div>
+//             </div>
+//             <!-- the trailer -->
+//           </div>
+//         </section>`
 let searchRecBtn = document.getElementById('btn-search');
 
 searchRecBtn.addEventListener('click', (event) => {
@@ -117,7 +141,7 @@ addRecBtn.addEventListener('click', (event) => {
     alert('thanks for this rec');
     let inputFromTheUser = document.getElementById('recInput');
     console.log(inputFromTheUser.value);
-    listContainer.insertAdjacentHTML('beforeend', `<li><a href="#">${inputFromTheUser.value}</a></li>`)
+    // listContainer.insertAdjacentHTML('beforeend', `<li><a href="#">${inputFromTheUser.value}</a></li>`)
     sendRecToServer({input: inputFromTheUser.value});
     // inputFromTheUser.value = "";    
     
@@ -135,5 +159,29 @@ loadRecBtn.addEventListener('click', (event) => {
     alert('enjoy !');
 })
 
+// let cards = document.querySelectorAll('.card')
+// let addtoRecAppDBbtn = card.querySelector('.card-action')
+
+// addtoRecAppDBbtn.addEventListener('click', (event) => {
+//     console.log('play !');
+// })
+
+let selectPlaySource = document.getElementById('btn-play');
+selectPlaySource.addEventListener('click', (event) => {
+  console.log("playing");
+});
 
 
+
+
+// const playlink = document.querySelector('a.rec-url');
+
+// playlink.addEventListener('click', (event) => {
+//     console.log('play !');
+    // let reffromUser = document.getElementById('ref').value;
+    // console.log(reffromUser);
+    // loadreffromDB();
+    // listContainer.insertAdjacentHTML('beforeend', `<li><a href="#">${reffromUser}</a></li>`)
+    // // inputFromTheUser.value = "";
+    // alert('enjoy !');
+// })

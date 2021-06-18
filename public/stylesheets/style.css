@@ -90,7 +90,7 @@ body {
   text-decoration: line-through;
 }
 
-a {
+.recapp {
   color: #0c0c0c;
   text-decoration: none;
 }
@@ -103,6 +103,10 @@ a {
   50% {
     opacity: 0;
   }
+}
+
+.rec-url {
+  border-radius: 50%;
 }
 
 /* VINYL PLAYER TOOL STYLE */
@@ -132,6 +136,16 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#btn-play {
+  position: absolute;
+  width: 10rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 /* launcher properties were :

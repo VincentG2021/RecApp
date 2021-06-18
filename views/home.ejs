@@ -6,6 +6,8 @@
   initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="static/stylesheets/style.css">
   <link href="static/stylesheets/app.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="static/stylesheets/cards.css">
+
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
@@ -29,7 +31,7 @@
   <div class="principal">
     <div class="wrap">
               <!-- Logo -->
-              <h1 class="blink_me"><a href="#launcher">RecApp</a></h1>
+              <h1 class="blink_me"><a class=recapp href="#launcher">RecApp</a></h1>
 
       <form class="formulario" action="">
         <input type="button" class="boton" id="btn-search" value="Search file">
@@ -61,12 +63,13 @@
       <img class="vinyl-player" src="static/images/vectorplayer.svg" alt=""> 
 
       <audio controls class="launcher" id="launcher">
-        <source src="https://alanwatts.org/wp-content/uploads/2019/05/Chinese-Farmer.mp3?_=1" type="audio/mpeg"/>
+        <source id="play-source" src="https://alanwatts.org/wp-content/uploads/2019/05/Chinese-Farmer.mp3?_=1" type="audio/mpeg"/>
       </audio>
+      <input type="button" class="playboton" id="btn-play" value="Play file">
   </section>
 
-  <!-- <audio controls class="launcher">
-    <source src="https://alanwatts.org/wp-content/uploads/2019/05/Chinese-Farmer.mp3?_=1" type="audio/mpeg"/>
+  <!-- <audio controls class="launcher2">
+    <source src="https://res.cloudinary.com/dlqnpg3s2/video/upload/v1623955818/sounds/gtr_dec2020_z8txiu.mp3" type="audio/mpeg"/>
   </audio> -->
 
   <div class="dictaphone-bg">
