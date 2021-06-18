@@ -13,6 +13,11 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.scrollable {
+  height: 100%; /* or any value */
+}
+
 #card::before {
   content: "";
   position: absolute;
@@ -27,15 +32,14 @@ body {
 #card {
   position: relative;
   max-width: 100%;
-  width: 95%;
   background: url("https://www.pngkey.com/png/full/164-1641579_music-is-the-divine-way-og-telling-beautiful.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 300px;
+  max-height: 100%;
   border-radius: 10px;
   box-shadow: 0 6px 40px rgba(90, 102, 127, 0.3);
   margin-right: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 #card .inner {
   font-family: "Lato", open-sans;

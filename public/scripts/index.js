@@ -45,8 +45,40 @@ const sendRecToServer = (rec) => {
     });
   }
 
+
+  const sendRecToDeleteToMyServer = (rec) => {
+    fetch('api/rec/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(rec),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+  
+  
+  const addEventToAllDeleteBtns = (recs) => {
+    recs.forEach((rec) => {
+      rec.children[1].addEventListener('click', (event) => {
+        sendRecToDeleteToMyServer({ID: rec.dataset.ID})
+        rec.remove()
+      })
+    })
+  }
+  
+
+
+
   const selectAllRec = () => {
     allRec = document.querySelectorAll('.rec-url')
+
     console.log(allRec)
     allRec.forEach((recbtn)=>{
       recbtn.addEventListener("click", (event) =>{
@@ -60,7 +92,7 @@ const sendRecToServer = (rec) => {
       })
     })
     // addEventToAllRec(allRec)
-    // addEventToAllDeleteBtns(allRec)
+    addEventToAllDeleteBtns(allRec)
   }
 
 
@@ -78,21 +110,26 @@ const sendRecToServer = (rec) => {
     })
     .then(response => response.json())
     .then(data => {
-        // list.innerHTML="";
+        lista.innerHTML="";
         console.log('Success loadreffromDB client js :', data);
         data.recKey.forEach((rec) => {
             let recCard = `<section class="recCards">
-            <div id="card" data-id=${rec.ID} class="card">
+          <div class="scrollable">
+          <div id="card" data-id=${rec.ID} class="card">
             <div class="inner">
               <div class="header">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-                
                 <h1 class="rec-infos">
                 <div class="rec-url" data-url=${rec.url}><a class="playword" href="#launcher">Send to player</a></div>
-                ${rec.Name}
+                Name : ${rec.Name}
                 </h1> 
               </div>
+              <div class="btn_row">
+                <a href="#" id=${rec.ID} id="deleterec class="card-action">Delete this file in RecApp database<i class="fa fa-caret-right" aria-hidden="true"></i>
+                </a>
+              </div>
             </div>
+          </div>
           </div>
           </section>`
           listContainer.insertAdjacentHTML('beforeend', recCard)

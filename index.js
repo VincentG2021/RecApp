@@ -25,7 +25,12 @@ app.post('/api/rec/add', (req, res) => {
 
 app.post('/api/rec/load', (req,res) => {
   console.log("Hugh fetch LOAD from the brain")
-  recController.loadRec(res)
+  recController.loadRecAppDB(res)
+})
+
+app.post('/api/rec/delete', (req,res) => {
+  console.log("Hugh fetch DELETE from the brain")
+  recController.deleteRecAppDB(res)
 })
 
 

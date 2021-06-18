@@ -24,7 +24,7 @@ const addRecAppDB = (reccontrol, res) =>{
       db.close();
 }
 
-const loadRec = (res) => {
+const loadRecAppDB = (res) => {
     let sendData = { recKey: [] };
     let sql = `SELECT * FROM recs`;
     
@@ -59,5 +59,32 @@ const loadRec = (res) => {
 };
 
 
+const deleteRecAppDB = (recID) => {
+  console.log("im ready to delete the rec with the id ", recID.ID )
+  let db = new sqlite3.Database('./db/db.myrecs', (err) => {
+    if (err) {
+      console.error(err.message);
+    }
+  });
+
+  let id = recID.ID;
+  // delete a row based on id
+  db.run(`DELETE FROM recs WHERE ID=?`, id, function(err) {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log(`Row(s) deleted ${this.changes}`);
+  });
+
+  // close the database connection
+  db.close((err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+  });
+}
+
+
   exports.addRecAppDB = addRecAppDB;
-  exports.loadRec = loadRec;
+  exports.loadRecAppDB = loadRecAppDB;
+  exports.deleteRecAppDB = deleteRecAppDB;
