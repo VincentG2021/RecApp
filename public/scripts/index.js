@@ -4,7 +4,7 @@
 // const searchRecBtn = document.getElementById('btn-search');
 // const lookintoRecAppDB = document.getElementById('lookinto').value;
 // const addRecBtn = document.getElementById('btn-agregar');
-// const inputFromTheUser = document.getElementById('recInput').value;
+// const nameinputFromTheUser = document.getElementById('nameInput').value;
 // const loadRecBtn = document.getElementById('btn-load');
 // const reffromUser = document.getElementById('ref').value;
 const listContainer = document.getElementById('lista');
@@ -88,7 +88,7 @@ const sendRecToServer = (rec) => {
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                 
                 <h1 class="rec-infos">
-                <div class="rec-url" data-url=${rec.url}>Play</div>
+                <div class="rec-url" data-url=${rec.url}><a class="playword" href="#launcher">Send to player</a></div>
                 ${rec.Name}
                 </h1> 
               </div>
@@ -120,13 +120,19 @@ let addRecBtn = document.getElementById('btn-agregar');
 
 addRecBtn.addEventListener('click', (event) => {
     alert('thanks for this rec');
-    let inputFromTheUser = document.getElementById('recInput');
-    console.log(inputFromTheUser.value);
-    // listContainer.insertAdjacentHTML('beforeend', `<li><a href="#">${inputFromTheUser.value}</a></li>`)
-    sendRecToServer({input: inputFromTheUser.value});
-    // inputFromTheUser.value = "";    
+    let nameinputFromTheUser = document.getElementById('nameInput');
+    let urlinputFromTheUser = document.getElementById('urlInput');
+    console.log(nameinputFromTheUser.value);
+    console.log(urlinputFromTheUser.value);
+    // listContainer.insertAdjacentHTML('beforeend', `<li><a href="#">${nameinputFromTheUser.value}</a></li>`)
+    sendRecToServer({inputname: nameinputFromTheUser.value, inputurl: urlinputFromTheUser.value});
+    // nameinputFromTheUser.value = "";    
     
 })
+
+
+
+
 
 let loadRecBtn = document.getElementById('btn-load');
 
@@ -136,6 +142,6 @@ loadRecBtn.addEventListener('click', (event) => {
     console.log(reffromUser);
     loadreffromDB();
     
-    // inputFromTheUser.value = "";
+    // nameinputFromTheUser.value = "";
     alert('enjoy !');
 })

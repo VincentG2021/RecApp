@@ -11,7 +11,7 @@ const addRecAppDB = (reccontrol, res) =>{
       let db = new sqlite3.Database('./db/db.myrecs');
   
     // insert one row into the langs table
-      db.run(`INSERT INTO recs(Name, url) VALUES(?, ?)`, [reccontrol.input, "https://res.cloudinary.com/dlqnpg3s2/video/upload/v1623955818/sounds/gtr_dec2020_z8txiu.mp3"], function(err) {
+      db.run(`INSERT INTO recs(Name, url) VALUES(?, ?)`, [reccontrol.inputname, reccontrol.inputurl], function(err) {
         if (err) {
           return console.log(err.message);
         }

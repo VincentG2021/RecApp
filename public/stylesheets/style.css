@@ -42,7 +42,7 @@ body {
 .principal .formulario input[type="text"] {
   margin-bottom: 20px;
   padding: 10px;
-  width: 100%;
+  width: 75%;
 }
 
 .principal .formulario input[type="text"].error {
@@ -68,6 +68,11 @@ body {
 
 .principal .formulario .boton:hover {
   border: 1px solid #fff;
+}
+
+.forminput-areas {
+  margin: 10px;
+  padding: 15px;
 }
 
 /* - Tareas - */

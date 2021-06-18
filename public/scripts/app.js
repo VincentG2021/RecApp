@@ -59,11 +59,14 @@ if (navigator.mediaDevices.getUserMedia) {
       const clipLabel = document.createElement('p');
       const audio = document.createElement('audio');
       const deleteButton = document.createElement('button');
+      const saveButton = document.createElement('button');
 
       clipContainer.classList.add('clip');
       audio.setAttribute('controls', '');
       deleteButton.textContent = 'Delete';
       deleteButton.className = 'delete';
+      saveButton.textContent = 'Save in RecApp';
+      saveButton.className = 'saveindb'
 
       if(clipName === null) {
         clipLabel.textContent = 'My unnamed clip';
@@ -74,6 +77,7 @@ if (navigator.mediaDevices.getUserMedia) {
       clipContainer.appendChild(audio);
       clipContainer.appendChild(clipLabel);
       clipContainer.appendChild(deleteButton);
+      clipContainer.appendChild(saveButton);
       soundClips.appendChild(clipContainer);
 
       audio.controls = true;
@@ -86,6 +90,12 @@ if (navigator.mediaDevices.getUserMedia) {
       deleteButton.onclick = function(e) {
         let evtTgt = e.target;
         evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+      }
+
+      saveButton.onclick = function(e) {
+        alert("audio saved")
+        // let saveevtTgt = e.target;
+        // saveevtTgt.parentNode.parentNode.removeChild(saveevtTgt.parentNode);
       }
 
       clipLabel.onclick = function() {
