@@ -21,6 +21,8 @@ const listContainer = document.getElementById('lista');
 //     })
 // }
 
+// FUNCTION TO ADD A FILE IN RECAPP DB
+
 const sendRecToServer = (rec) => {
     fetch('api/rec/add', {
       method: 'POST',
@@ -45,6 +47,111 @@ const sendRecToServer = (rec) => {
     });
   }
 
+  // FUNCTION TO SELECT RECS URL & LAUNCH ONE AS A TRACK IN PLAYER
+
+  const selectAllRec = () => {
+    allRec = document.querySelectorAll('.rec-url')
+    console.log(allRec)
+
+    allRec.forEach((sendtoplayerbtn)=>{
+      sendtoplayerbtn.addEventListener("click", (event) =>{
+        console.log("audio url ready to play")
+        let selectvinyl = document.querySelector('.vinyl-wrapper')
+        selectvinyl.insertAdjacentHTML("beforeend", `
+        <audio controls class="audiolauncher" id="launcher">
+        <source id="play-source" src=${sendtoplayerbtn.dataset.url} type="audio/mpeg"/>
+      </audio>
+        `)
+      })
+    })
+    selectRecToDel = document.querySelectorAll('.recCards')
+    console.log(selectRecToDel)
+
+    selectRecToDel.forEach((deleteBtn)=>{
+      deleteBtn.addEventListener("click", (event) =>{
+        alert('Delete this rec from RecApp database ?' + deleteBtn.dataset.id);
+        sendRecToDeleteToMyServer({ID: deleteBtn.dataset.id})
+        deleteBtn.remove()
+
+        console.log("Rec deleted")
+      })
+    })
+
+    // addEventToAllRec(allRec)
+    // addEventToAllDeleteBtns(allRec)
+  }
+
+
+
+{/* <li data-id=${rec.ID}>
+<a href="#">${rec.ID} ${rec.Name} ${rec.url}</a></li> */}
+
+
+  // FUNCTION TO LOAD FILE(S) FROM RECAPP DB
+
+  const loadreffromDB = () => {
+    fetch('api/rec/load', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+        lista.innerHTML="";
+        console.log('Success loadreffromDB client js :', data);
+        data.recKey.forEach((rec) => {
+            let recCard = `<section class="recCards" data-id=${rec.ID}>
+          <div class="scrollable">
+          <div id="card" class="card">
+            <div class="inner">
+              <div class="header">
+                <h1 class="rec-infos"> 
+                <i><small>Name :</i></small> <br/> ${rec.Name}
+                <div class="rec-url" data-url=${rec.url}><a class="playword" href="#launcher">Send to player</a></div>
+                </h1> 
+              </div>
+              <div class="btn_row">
+                <a href="#" class="card-action" data-id=${rec.ID}>Delete this file in RecApp database</a>
+              </div>
+            </div>
+          </div>
+          </div>
+          </section>`
+          listContainer.insertAdjacentHTML('beforeend', recCard)
+        })
+        selectAllRec()
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+  }
+
+  // FUNCTION TO SELECT RECS URL & DELETE ONE TRACK FROM THE WEB PAGE
+
+  // const selectAllRec = () => {
+  //   allRec = document.querySelectorAll('.rec-url')
+  //   console.log(allRec)
+
+  //   allRec.forEach((sendtoplayerbtn)=>{
+  //     sendtoplayerbtn.addEventListener("click", (event) =>{
+  //       console.log("audio url ready to play")
+  //       let selectvinyl = document.querySelector('.vinyl-wrapper')
+  //       selectvinyl.insertAdjacentHTML("beforeend", `
+  //       <audio controls class="audiolauncher" id="launcher">
+  //       <source id="play-source" src=${sendtoplayerbtn.dataset.url} type="audio/mpeg"/>
+  //     </audio>
+  //       `)
+  //     })
+  //   })
+
+    // addEventToAllRec(allRec)
+  //   addEventToAllDeleteBtns(allRec)
+  // }
+
+
+
+  // FUNCTION TO DELETE FILE(S) IN RECAPP DB
 
   const sendRecToDeleteToMyServer = (rec) => {
     fetch('api/rec/delete', {
@@ -64,94 +171,17 @@ const sendRecToServer = (rec) => {
   }
   
   
-  const addEventToAllDeleteBtns = (recs) => {
-    recs.forEach((rec) => {
-      rec.children[1].addEventListener('click', (event) => {
-        sendRecToDeleteToMyServer({ID: rec.dataset.ID})
-        rec.remove()
-      })
-    })
-  }
-  
+  // const addEventToAllDeleteBtns = (recs) => {
+  //   recs.forEach((rec) => {
+  //     rec.children[1].addEventListener('click', (event) => {
+        // sendRecToDeleteToMyServer({ID: rec.dataset.ID})
+        // rec.remove()
+  //     })
+  //   })
+  // }
 
 
-
-  const selectAllRec = () => {
-    allRec = document.querySelectorAll('.rec-url')
-
-    console.log(allRec)
-    allRec.forEach((recbtn)=>{
-      recbtn.addEventListener("click", (event) =>{
-        console.log("audio url ready to play")
-        let selectvinyl = document.querySelector('.vinyl-wrapper')
-        selectvinyl.insertAdjacentHTML("beforeend", `
-        <audio controls class="launcher" id="launcher">
-        <source id="play-source" src=${recbtn.dataset.url} type="audio/mpeg"/>
-      </audio>
-        `)
-      })
-    })
-    // addEventToAllRec(allRec)
-    addEventToAllDeleteBtns(allRec)
-  }
-
-
-
-{/* <li data-id=${rec.ID}>
-<a href="#">${rec.ID} ${rec.Name} ${rec.url}</a></li> */}
-
-
-  const loadreffromDB = () => {
-    fetch('api/rec/load', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(response => response.json())
-    .then(data => {
-        lista.innerHTML="";
-        console.log('Success loadreffromDB client js :', data);
-        data.recKey.forEach((rec) => {
-            let recCard = `<section class="recCards">
-          <div class="scrollable">
-          <div id="card" data-id=${rec.ID} class="card">
-            <div class="inner">
-              <div class="header">
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                <h1 class="rec-infos">
-                <div class="rec-url" data-url=${rec.url}><a class="playword" href="#launcher">Send to player</a></div>
-                Name : ${rec.Name}
-                </h1> 
-              </div>
-              <div class="btn_row">
-                <a href="#" id=${rec.ID} id="deleterec class="card-action">Delete this file in RecApp database<i class="fa fa-caret-right" aria-hidden="true"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          </div>
-          </section>`
-          listContainer.insertAdjacentHTML('beforeend', recCard)
-        })
-        selectAllRec()
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-  }
-
-let searchRecBtn = document.getElementById('btn-search');
-
-searchRecBtn.addEventListener('click', (event) => {
-  let lookintoRecAppDB = document.getElementById('lookinto');
-  console.log(lookintoRecAppDB.value);
-  alert('get inspired');
-  searchRec(lookintoRecAppDB.value);
-})
-
-
-
+// ADD A NEW FILE BUTTON and ACTIONS
 
 let addRecBtn = document.getElementById('btn-agregar');
 
@@ -167,9 +197,8 @@ addRecBtn.addEventListener('click', (event) => {
     
 })
 
-
-
-
+ 
+// LOAD FILE(S) (FROM A REFERENCE) BUTTON and ACTIONS
 
 let loadRecBtn = document.getElementById('btn-load');
 
@@ -182,3 +211,33 @@ loadRecBtn.addEventListener('click', (event) => {
     // nameinputFromTheUser.value = "";
     alert('enjoy !');
 })
+
+// DELETE FILE(S) BUTTON and ACTIONS
+// const selectRectoDel = () => {
+//   RecToDel = document.querySelectorAll('#deleterec')
+//   console.log(RectoDel)
+
+  // RecToDel.forEach((deleteBtn)=>{
+  //   deleteBtn.addEventListener("click", (event) =>{
+  //     alert('Delete this rec from RecApp database ?');
+  //     console.log("Rec deleted")
+  //   })
+  // })
+// }
+// selectRecToDel();
+
+
+
+
+
+
+
+
+// let searchRecBtn = document.getElementById('btn-search');
+
+// searchRecBtn.addEventListener('click', (event) => {
+//   let lookintoRecAppDB = document.getElementById('lookinto');
+//   console.log(lookintoRecAppDB.value);
+//   alert('get inspired');
+//   searchRec(lookintoRecAppDB.value);
+// })

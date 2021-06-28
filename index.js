@@ -30,7 +30,8 @@ app.post('/api/rec/load', (req,res) => {
 
 app.post('/api/rec/delete', (req,res) => {
   console.log("Hugh fetch DELETE from the brain")
-  recController.deleteRecAppDB(res)
+  console.log(req.body)
+  recController.deleteRecAppDB(req.body)
 })
 
 

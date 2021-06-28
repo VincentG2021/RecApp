@@ -134,16 +134,16 @@ body {
   height: 928px;
 }
 
-.launcher {
+.audiolauncher {
   position: absolute;
-  width: 8rem;
+  width: 12rem;
   height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* launcher properties were :
+/* audiolauncher properties were :
   width: 108px
   height:108px 
   left: 558px;
@@ -151,3 +151,8 @@ body {
   or
   top: 540px;
   top: 433.34px; */
+
+.audiolauncher:hover {
+  width: 18rem;
+  height: 2rem;
+}
