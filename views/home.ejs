@@ -15,31 +15,34 @@
 
   <title>RecApp</title>
   <link rel="icon" href="static/images/favicon.ico" type="image/png" />
+
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script> 
+  
 </head>
 
 <body>
   <div id="page-wrapper"></div>
+   <!-- <h1>HELLO SOUND</h1> -->
+
+  <script src="static/scripts/index.js"></script>
+  <script src="static/scripts/app.js"></script>
 
     <!-- Header -->
-      <section id="header">
-        </section>
-
-
-
-  <!-- <h1>HELLO SOUND</h1> -->
+      <section id="header"></section>
 
   <div class="principal">
     <div class="wrap">
-              <!-- Logo -->
-              <h1 class="blink_me"><a class=recapp href="#recapp">RecApp</a></h1>
+      <!-- RecApp Logo -->
+      <h1 class="blink_me"><a class=recapp href="#recapp">RecApp</a></h1>
 
       <form class="formulario" action="">
-        <input type="text" class ="forminput-areas" id ="lookinto" name="lookinto RecAppdb" placeholder="Look for a file into the RecApp database">
-        <input type="button" class="boton" id="btn-search" value="Search file">
+        <input type="text" class ="forminput-areas" id ="lookinto" name="lookinto RecAppdb" placeholder="Upload a file into the RecApp database">
+        <input type="button" class="boton" id="btn-upload" value="Upload file">
       </form>
       <form class="formulario" action="">
-        <input type="text" class ="forminput-areas" id="nameInput" placeholder="Give here a NAME to the audio file you would like to add">
-        <input type="text" class ="forminput-areas" id="urlInput" placeholder="Insert here the URL adress that allows RecApp to access this file">
+        <input type="text" class ="forminput-areas" id="nameInput" placeholder="Give here a NAME to the audio / image file you would like to add">
+        <input type="text" class ="forminput-areas" id="audiourlInput" placeholder="Insert here the SOUND URL adress that allows RecApp to access it">
+        <input type="text" class ="forminput-areas" id="imgurlInput" placeholder="Insert here the IMAGE URL adress that allows RecApp to access it">
         <input type="button" class="boton" id="btn-agregar" value="Add a new file">
       </form>
       <form class="formulario" action="">
@@ -65,11 +68,15 @@
 
   <section class="vinyl-wrapper">
 
-      <img class="vinyl-player" src="static/images/vectorplayer.svg" alt=""> 
+      <img class="vinyl-player" src="static/images/vectorplayer.svg" alt="vinyl player image not found"> 
 
-     
   </section>
 
+  <div class="coverimg-place">
+       
+  </div>
+
+    <!-- DICTAPHONE TOOL -->
 
   <div class="dictaphone-bg">
   <div class="dictaphone-wrapper">
@@ -104,9 +111,21 @@
     <p>Icon courtesy of <a href="http://findicons.com/search/microphone">Find Icons</a>. Thanks to <a href="http://soledadpenades.com/">Sole</a> for the Oscilloscope code!</p>
   </aside>
 
+    <!-- PAD TOOL -->
+  <div class="pad">
+    <iframe id="inlineFrameExample"
+     title="RecApp pad"
+     width="90%"
+     height="500vh"
+     src="https://pad.colibris-outilslibres.org/p/RecApp">
+    </iframe>
+  </div>
 
+  <footer class="footer">
+    <div>
+      <p>Thanks mates ! </br> RecApp 2021</p>
+    </div>
+  </footer>
 
-  <script src="static/scripts/index.js"></script>
-  <script src="static/scripts/app.js"></script>
 </body>
 </html>

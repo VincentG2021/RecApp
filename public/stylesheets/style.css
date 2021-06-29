@@ -143,7 +143,7 @@ body {
   justify-content: center;
 }
 
-/* audiolauncher properties were :
+/* audiolauncher first fixed properties were :
   width: 108px
   height:108px 
   left: 558px;
@@ -155,4 +155,45 @@ body {
 .audiolauncher:hover {
   width: 18rem;
   height: 2rem;
+}
+
+/* COVER IMAGE STYLE */
+
+.coverimg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* PAD STYLE */
+
+.pad {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  border-top: 10px solid #0c0c0c;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 100%;
+  min-height: 10vh;
+  max-height: 30vh;
+  border-top: 10px solid #0c0c0c;
+  background: linear-gradient(319deg, #ba2d0b 0%, #fe7f2d 37%, #ffbf46 100%);
+
+  /* background: url("https://www.pngkey.com/png/full/164-1641579_music-is-the-divine-way-og-telling-beautiful.png"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
 }

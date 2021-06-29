@@ -11,7 +11,7 @@ const addRecAppDB = (reccontrol, res) =>{
       let db = new sqlite3.Database('./db/db.myrecs');
   
     // insert one row into the langs table
-      db.run(`INSERT INTO recs(Name, url) VALUES(?, ?)`, [reccontrol.inputname, reccontrol.inputurl], function(err) {
+      db.run(`INSERT INTO recs(Name, audio_url, img_url) VALUES(?, ?, ?)`, [reccontrol.inputname, reccontrol.inputaudiourl, reccontrol.inputimgurl], function(err) {
         if (err) {
           return console.log(err.message);
         }
