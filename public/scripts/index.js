@@ -10,7 +10,7 @@
 const listContainer = document.getElementById('lista');
 const uploadBtn = document.getElementById('btn-upload');
 const coverimginsert = document.querySelector('.coverimg-place');
-// const allStars = document.querySelectorAll('.fa-star');
+
 
 // const searchRec = (rec) => {
 //   // recContainer.innerHTML = ""
@@ -48,23 +48,6 @@ const sendRecToServer = (rec) => {
     });
   }
 
-  // FUNCTION TO MARK A REC AS FAVORITE
-
-  // const addEventToAllRecs = (recs) => {
-  //   recs.forEach((rec) => {
-  //     rec.children[0].addEventListener('click', (event) => {
-  //       // call my backend
-  //       // alert(rec.dataset.id)
-  //       sendRecToUpdateToMyServer({ID: rec.dataset.id, isFav: rec.dataset.fav})
-  //       rec.children[0].classList.toggle('fav-1')
-  //       if(rec.dataset.fav === "0"){
-  //         rec.dataset.fav = "1"
-  //       }else{
-  //         rec.dataset.fav = "0"
-  //       }
-  //     })
-  //   })
-  // }
 
   // FUNCTION TO SELECT RECS to PLAY or DELETE
 
@@ -99,13 +82,13 @@ const sendRecToServer = (rec) => {
         alert('Delete this rec from RecApp database ?' + cardtodel.dataset.id);
         sendRecToDeleteToMyServer({ID: cardtodel.dataset.id})
         cardtodel.remove()
-
-        console.log("Rec deleted")
+        console.log("Rec deleted in RecApp database")
+        alert("Rec deleted in RecApp database")
       })
     })
 }
   
-// FUNCTION TO UPDATE A REC AS FAV IN RECAPP DB
+// FUNCTION TO UPDATE A REC AS FAV and IN RECAPP DB
 
 const sendRecFavToMyServer = (rec) => {
   fetch('api/rec/updatefav', {
@@ -139,32 +122,23 @@ const sendRecFavToMyServer = (rec) => {
         }else{
           staricon.dataset.fav = "0"
         }
-        // if(staricon.dataset.fav === "1"){
-        //   staricon.dataset.fav = "0"
-        // }else{
-        //   staricon.dataset.fav = "1"
-        // }
       })
       });
   };
 
-
-// favselect.forEach((staricon)=>{
-//   staricon.addEventListener('click', (event) => {
-//   alert(staricon.favselect.dataset.id);
-// });
-// });
-// OKKKKK
-// const selectAllStars = () => {
-//   allStars = document.querySelectorAll('.fa-star')
-//   console.log(allStars);
-//   allStars.forEach((staricon)=>{
-//    staricon.addEventListener('click', (event) => {
-//         alert(staricon.dataset.id);
-//     });
-//   });
-// };
-
+  // FUNCTION TO DISPLAY REC INFOS
+  const showAllInfos = () => {
+    allInfos = document.querySelectorAll('.fa-info-circle')
+        console.log(allInfos);
+        allInfos.forEach((infoicon)=>{
+          infoicon.addEventListener('click', (event) => {
+               alert("ID = " + infoicon.dataset.id + " audiourl = " + infoicon.dataset.audiourl + " imgourl = " + infoicon.dataset.imgurl);
+          })
+        })
+    {/* <div class="info box">
+      Info Message Box
+    </div> */}
+  }
 
     // FUNCTION TO DELETE A REC ROW IN RECAPP DB
 
@@ -206,11 +180,11 @@ const sendRecFavToMyServer = (rec) => {
           <div id="card" class="card">
             <div class="inner">
               <div class="header">
-                  <i class="fa fa-info-circle" style="font-size:20px" aria-hidden="true"></i>
                 <div class="stars ">
                   <i class="fa fa-star fa-spin ${"fav-" + rec.rec_fav}" data-id=${rec.ID} data-fav=${rec.rec_fav} style="font-size:30px" aria-hidden="true"></i>
                  </div>
                 <h1 class="rec-infos"> 
+                <i class="fa fa-info-circle" data-id=${rec.ID} data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url} style="font-size:20px" aria-hidden="true"></i>
                 <i><small>Name :</i></small> <br/> ${rec.Name}
                 <div class="rec-url" data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url}><a class="playword" href="#launcher">Send to player</a></div>
                 </h1>   
@@ -227,7 +201,7 @@ const sendRecFavToMyServer = (rec) => {
         
         selectAllRec();
         selectAllStars();
-        // addEventToAllRecs(rec);
+        showAllInfos();
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -251,6 +225,7 @@ addRecBtn.addEventListener('click', (event) => {
     // nameinputFromTheUser.value = "";    
     
 })
+
 
  
 // LOAD FILE(S) (FROM A REFERENCE) BUTTON and ACTIONS
@@ -306,11 +281,4 @@ uploadBtn.addEventListener('click', (event) => {
 //   searchRec(lookintoRecAppDB.value);
 // })
 
-  // const addEventToAllDeleteBtns = (recs) => {
-  //   recs.forEach((rec) => {
-  //     rec.children[1].addEventListener('click', (event) => {
-        // sendRecToDeleteToMyServer({ID: rec.dataset.ID})
-        // rec.remove()
-  //     })
-  //   })
-  // }
+
