@@ -24,17 +24,21 @@ app.post('/api/rec/add', (req, res) => {
 })
 
 app.post('/api/rec/load', (req,res) => {
-  console.log("Hugh fetch LOAD from the brain")
+  console.log("fetch LOAD from the brain")
   recController.loadRecAppDB(res)
 })
 
 app.post('/api/rec/delete', (req,res) => {
-  console.log("Hugh fetch DELETE from the brain")
+  console.log("fetch DELETE from the brain")
   console.log(req.body)
   recController.deleteRecAppDB(req.body)
 })
 
-
+app.post('/api/rec/updatefav', (req,res) => {
+  console.log("fetch UPDATE FAV from the brain")
+  console.log(req.body)
+  recController.updateFavRecOnDB(req.body)
+})
 
 
 app.listen(3000, () => console.log("Server Up and running"));

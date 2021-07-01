@@ -9,7 +9,8 @@
 // const reffromUser = document.getElementById('ref').value;
 const listContainer = document.getElementById('lista');
 const uploadBtn = document.getElementById('btn-upload');
-const coverimginsert = document.querySelector('.coverimg-place')
+const coverimginsert = document.querySelector('.coverimg-place');
+// const allStars = document.querySelectorAll('.fa-star');
 
 // const searchRec = (rec) => {
 //   // recContainer.innerHTML = ""
@@ -46,6 +47,24 @@ const sendRecToServer = (rec) => {
       console.error('Error:', error);
     });
   }
+
+  // FUNCTION TO MARK A REC AS FAVORITE
+
+  // const addEventToAllRecs = (recs) => {
+  //   recs.forEach((rec) => {
+  //     rec.children[0].addEventListener('click', (event) => {
+  //       // call my backend
+  //       // alert(rec.dataset.id)
+  //       sendRecToUpdateToMyServer({ID: rec.dataset.id, isFav: rec.dataset.fav})
+  //       rec.children[0].classList.toggle('fav-1')
+  //       if(rec.dataset.fav === "0"){
+  //         rec.dataset.fav = "1"
+  //       }else{
+  //         rec.dataset.fav = "0"
+  //       }
+  //     })
+  //   })
+  // }
 
   // FUNCTION TO SELECT RECS to PLAY or DELETE
 
@@ -84,7 +103,68 @@ const sendRecToServer = (rec) => {
         console.log("Rec deleted")
       })
     })
-  }
+}
+  
+// FUNCTION TO UPDATE A REC AS FAV IN RECAPP DB
+
+const sendRecFavToMyServer = (rec) => {
+  fetch('api/rec/updatefav', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(rec),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
+  // FUNCTION TO SELECT A REC AS FAVORITE
+
+  const selectAllStars = () => {
+    allStars = document.querySelectorAll('.fa-star')
+    console.log(allStars);
+    allStars.forEach((staricon)=>{
+     staricon.addEventListener('click', (event) => {
+          alert("ID = " + staricon.dataset.id + " fav = " + staricon.dataset.fav);
+          sendRecFavToMyServer({ID: staricon.dataset.id, isFav: staricon.dataset.fav})
+          staricon.classList.toggle('fav-1')
+        if(staricon.dataset.fav === "0"){
+          staricon.dataset.fav = "1"
+        }else{
+          staricon.dataset.fav = "0"
+        }
+        // if(staricon.dataset.fav === "1"){
+        //   staricon.dataset.fav = "0"
+        // }else{
+        //   staricon.dataset.fav = "1"
+        // }
+      })
+      });
+  };
+
+
+// favselect.forEach((staricon)=>{
+//   staricon.addEventListener('click', (event) => {
+//   alert(staricon.favselect.dataset.id);
+// });
+// });
+// OKKKKK
+// const selectAllStars = () => {
+//   allStars = document.querySelectorAll('.fa-star')
+//   console.log(allStars);
+//   allStars.forEach((staricon)=>{
+//    staricon.addEventListener('click', (event) => {
+//         alert(staricon.dataset.id);
+//     });
+//   });
+// };
+
 
     // FUNCTION TO DELETE A REC ROW IN RECAPP DB
 
@@ -120,26 +200,34 @@ const sendRecToServer = (rec) => {
         lista.innerHTML="";
         console.log('Success loadreffromDB client js :', data);
         data.recKey.forEach((rec) => {
-            let recCard = `<section class="recCards">
-          <div class="scrollable">
-          <div id="card" class="card" data-id=${rec.ID}>
+            let recCard = 
+      `<section class="recCards">
+        <div class="scrollable">
+          <div id="card" class="card">
             <div class="inner">
               <div class="header">
+                  <i class="fa fa-info-circle" style="font-size:20px" aria-hidden="true"></i>
+                <div class="stars ">
+                  <i class="fa fa-star fa-spin ${"fav-" + rec.rec_fav}" data-id=${rec.ID} data-fav=${rec.rec_fav} style="font-size:30px" aria-hidden="true"></i>
+                 </div>
                 <h1 class="rec-infos"> 
                 <i><small>Name :</i></small> <br/> ${rec.Name}
                 <div class="rec-url" data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url}><a class="playword" href="#launcher">Send to player</a></div>
-                </h1>
+                </h1>   
               </div>
               <div class="btn_row">
                 <a href="#" class="card-action" data-id=${rec.ID}>Delete this file in RecApp database</a>
               </div>
             </div>
           </div>
-          </div>
-          </section>`
-          listContainer.insertAdjacentHTML('beforeend', recCard)
+        </div>
+      </section>`
+          listContainer.insertAdjacentHTML('beforeend', recCard);
         })
-        selectAllRec()
+        
+        selectAllRec();
+        selectAllStars();
+        // addEventToAllRecs(rec);
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -175,8 +263,8 @@ loadRecBtn.addEventListener('click', (event) => {
     console.log(reffromUser);
     loadreffromDB();
     
-    // nameinputFromTheUser.value = "";
-    alert('enjoy !');
+    // reffromUser.value = "";
+    // alert('enjoy !');
 })
 
 // UPLOAD A FILE (FROM LOCAL TO CLOUDINARY) BUTTON and ACTIONS
@@ -193,11 +281,13 @@ let myWidget = cloudinary.createUploadWidget({
 uploadBtn.addEventListener('click', (event) => {
   let lookintoRecAppDB = document.getElementById('lookinto');
   console.log(lookintoRecAppDB.value);
-  alert('get inspired');
+  // alert('get inspired');
   myWidget.open();
   
   // searchRec(lookintoRecAppDB.value);
 }, false);
+
+
 
 
 

@@ -84,7 +84,32 @@ const deleteRecAppDB = (recID) => {
   });
 }
 
+const updateFavRecOnDB = (favrecId) => {
+  let fav
+  if(favrecId.isFav === "0"){
+    fav = 1
+  }else{
+    fav = 0
+  }
+  console.log("i will update the rec with the id", favrecId.ID)
+  let db = new sqlite3.Database('./db/db.myrecs');
+
+
+  db.run(`UPDATE recs SET rec_fav = ? WHERE ID = ?`, [fav, favrecId.ID], function(err) {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log(`Row(s) updated: ${this.changes}`);
+
+  });
+
+  // close the database connection
+  db.close();
+}
+
+
 
   exports.addRecAppDB = addRecAppDB;
   exports.loadRecAppDB = loadRecAppDB;
   exports.deleteRecAppDB = deleteRecAppDB;
+  exports.updateFavRecOnDB = updateFavRecOnDB;

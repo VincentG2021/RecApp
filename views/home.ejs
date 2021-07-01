@@ -4,18 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,
   initial-scale=1.0">
+
+  <!-- Local stylesheets -->
   <link rel="stylesheet" type="text/css" href="static/stylesheets/style.css">
   <link href="static/stylesheets/app.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="static/stylesheets/cards.css">
 
-
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
 
   <title>RecApp</title>
+  <!-- RecApp Icon -->
   <link rel="icon" href="static/images/favicon.ico" type="image/png" />
 
+  <!-- Cloudinary upload widget script-->
   <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script> 
   
 </head>
@@ -33,18 +40,19 @@
       <h1 class="blink_me"><a class=recapp href="#recapp">RecApp</a></h1>
 
       <form class="formulario" action="">
-        <input type="text" class ="forminput-areas" id ="lookinto" name="lookinto RecAppdb" placeholder="Upload a file into the RecApp database">
-        <input type="button" class="boton" id="btn-upload" value="Upload file">
+        <input type="text" class ="forminput-areas" id ="lookinto" name="lookinto RecAppdb" placeholder="(NAME the file to UPLOAD on Cloudinary)">
+        <p>CHOSING THE NAME of the uploaded file is not available yet...!</p>
+        <input type="button" class="boton" id="btn-upload" value="Upload file(s) on cloud">
       </form>
       <form class="formulario" action="">
-        <input type="text" class ="forminput-areas" id="nameInput" placeholder="Give here a NAME to the audio / image file you would like to add">
-        <input type="text" class ="forminput-areas" id="audiourlInput" placeholder="Insert here the SOUND URL adress that allows RecApp to access it">
-        <input type="text" class ="forminput-areas" id="imgurlInput" placeholder="Insert here the IMAGE URL adress that allows RecApp to access it">
-        <input type="button" class="boton" id="btn-agregar" value="Add a new file">
+        <input type="text" class ="forminput-areas" id="nameInput" placeholder="Give a FILE NAME">
+        <input type="text" class ="forminput-areas" id="audiourlInput" placeholder="Insert here the AUDIO URL for RecApp access">
+        <input type="text" class ="forminput-areas" id="imgurlInput" placeholder="Insert here the IMAGE URL for RecApp access">
+        <input type="button" class="boton" id="btn-agregar" value="Add this file in RecApp database">
       </form>
       <form class="formulario" action="">
         <input type="text" class ="forminput-areas" id ="ref" name="references" placeholder="File references">
-        <input type="button" class="boton" id="btn-load" value="Load RecApp file(s)">
+        <input type="button" class="boton" id="btn-load" value="Load RecApp files">
       </form>
     </div>
   </div>
