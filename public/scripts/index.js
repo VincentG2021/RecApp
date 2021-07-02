@@ -133,11 +133,20 @@ const sendRecFavToMyServer = (rec) => {
         allInfos.forEach((infoicon)=>{
           infoicon.addEventListener('click', (event) => {
                alert("ID = " + infoicon.dataset.id + " audiourl = " + infoicon.dataset.audiourl + " imgourl = " + infoicon.dataset.imgurl);
+               infoicon.classList.add('fa-info-box');
+              //  infoicon.innerHTML=("beforeend", 
+              //  `
+              //  <h3>Rec infos :</h3>
+              //  <p>ID : ${infoicon.dataset.id}<p/>
+              //  <p>${infoicon.dataset.audiourl}<p/>
+              //  <p>${infoicon.dataset.imgurl}<p/>
+              //  `)
           })
         })
     {/* <div class="info box">
       Info Message Box
     </div> */}
+    // ("<ul><li>Element n°1</li><li>Element n°2</li></ul>").appendTo(".conteneur");
   }
 
     // FUNCTION TO DELETE A REC ROW IN RECAPP DB
@@ -183,10 +192,15 @@ const sendRecFavToMyServer = (rec) => {
                 <div class="stars ">
                   <i class="fa fa-star fa-spin ${"fav-" + rec.rec_fav}" data-id=${rec.ID} data-fav=${rec.rec_fav} style="font-size:30px" aria-hidden="true"></i>
                  </div>
-                <h1 class="rec-infos"> 
-                <i class="fa fa-info-circle" data-id=${rec.ID} data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url} style="font-size:20px" aria-hidden="true"></i>
+                <h1 class="rec-infos">
+                  <div class="moreinfodiv">
+                    <i class="fa fa-info-circle" data-id=${rec.ID} data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url} style="font-size:20px" aria-hidden="true">
+                    </i>
+                  </div>
                 <i><small>Name :</i></small> <br/> ${rec.Name}
-                <div class="rec-url" data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url}><a class="playword" href="#launcher">Send to player</a></div>
+                  <div class="rec-url" data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url}>
+                    <a class="playword" href="#launcher">Send to player</a>
+                  </div>
                 </h1>   
               </div>
               <div class="btn_row">

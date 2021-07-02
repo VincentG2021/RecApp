@@ -144,11 +144,24 @@ body {
   text-decoration: none;
 }
 
-/* Favorite star icon */
+/* Favorite star icons */
 .fa-star {
   cursor: pointer;
 }
 
 .fav-1 {
   color: orange !important;
+}
+
+/* Infos icons */
+.fa-info-box {
+  width: 300px;
+  height: 20px;
+  border: 2px solid #000;
+  margin: 0 auto 15px;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: #00b6ff;
 }
