@@ -144,6 +144,16 @@ body {
   text-decoration: none;
 }
 
+.delmessage {
+  color: #0c0c0c;
+  font-size: 14px;
+  font-family: "Dela Gothic One", cursive, sans-serif;
+  padding: 5px;
+  background: linear-gradient(319deg, #ba2d0b 0%, #fe7f2d 37%, #ffbf46 100%);
+  border: 3px rgba(233, 68, 56, 0.7) dotted;
+  border-radius: 15%;
+}
+
 /* Favorite star icons */
 .fa-star {
   cursor: pointer;
