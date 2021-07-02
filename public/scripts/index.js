@@ -78,12 +78,10 @@ const sendRecToServer = (rec) => {
 
     selectRecToDel.forEach((cardtodel)=>{
         cardtodel.addEventListener("click", (event) =>{
-        
-        alert('Delete this rec from RecApp database ?' + cardtodel.dataset.id);
         sendRecToDeleteToMyServer({ID: cardtodel.dataset.id})
+        alert('Rec deleted in RecApp database');
+        cardtodel.insertAdjacentHTML("beforebegin", `<p class="delmessage">Rec deleted in RecApp database</p>`)
         cardtodel.remove()
-        console.log("Rec deleted in RecApp database")
-        alert("Rec deleted in RecApp database")
       })
     })
 }
@@ -132,21 +130,15 @@ const sendRecFavToMyServer = (rec) => {
         console.log(allInfos);
         allInfos.forEach((infoicon)=>{
           infoicon.addEventListener('click', (event) => {
-               alert("ID = " + infoicon.dataset.id + " audiourl = " + infoicon.dataset.audiourl + " imgourl = " + infoicon.dataset.imgurl);
+               alert("ID = " + infoicon.dataset.id + '\n\n' + " audiourl = " + '\n' + infoicon.dataset.audiourl + '\n\n' + " imgurl = " + '\n' + infoicon.dataset.imgurl);
                infoicon.classList.add('fa-info-box');
-              //  infoicon.innerHTML=("beforeend", 
-              //  `
-              //  <h3>Rec infos :</h3>
-              //  <p>ID : ${infoicon.dataset.id}<p/>
-              //  <p>${infoicon.dataset.audiourl}<p/>
-              //  <p>${infoicon.dataset.imgurl}<p/>
-              //  `)
+              let panel = document.createElement('p');
+              panel.setAttribute('class', 'infoBox');
+              infoicon.appendChild(panel);
+              // infoicon.insertAdjacentHTML('beforebegin', 
+              // `ID =  ${infoicon.dataset.id} </br> audiourl : ${infoicon.dataset.audiourl} </br> imgurl : ${infoicon.dataset.imgurl}`)
           })
         })
-    {/* <div class="info box">
-      Info Message Box
-    </div> */}
-    // ("<ul><li>Element n°1</li><li>Element n°2</li></ul>").appendTo(".conteneur");
   }
 
     // FUNCTION TO DELETE A REC ROW IN RECAPP DB
@@ -189,11 +181,11 @@ const sendRecFavToMyServer = (rec) => {
           <div id="card" class="card">
             <div class="inner">
               <div class="header">
-                <div class="stars ">
+                <div class="stars">
                   <i class="fa fa-star fa-spin ${"fav-" + rec.rec_fav}" data-id=${rec.ID} data-fav=${rec.rec_fav} style="font-size:30px" aria-hidden="true"></i>
                  </div>
                 <h1 class="rec-infos">
-                  <div class="moreinfodiv">
+                  <div class="moreinfo">
                     <i class="fa fa-info-circle" data-id=${rec.ID} data-audiourl=${rec.audio_url} data-imgurl=${rec.img_url} style="font-size:20px" aria-hidden="true">
                     </i>
                   </div>
@@ -204,7 +196,7 @@ const sendRecFavToMyServer = (rec) => {
                 </h1>   
               </div>
               <div class="btn_row">
-                <a href="#" class="card-action" data-id=${rec.ID}>Delete this file in RecApp database</a>
+                <a href="#" class="card-action" data-id=${rec.ID}>Delete</a>
               </div>
             </div>
           </div>
