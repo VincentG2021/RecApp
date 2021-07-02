@@ -1,0 +1,199 @@
+/* Basic */
+/* html {
+  box-sizing: border-box;
+} */
+
+/* GLOBAL STYLE */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0c0c0c;
+  font-family: "Dela Gothic One", cursive, sans-serif;
+  font-size: 16px;
+}
+
+.wrap {
+  margin: auto;
+  max-width: 800px;
+  width: 90%;
+}
+
+.principal {
+  /* background: #0c0c0c; */
+  background: linear-gradient(180deg, #ffd644 0%, #bc6f00 100%);
+  /* border-top: 10px solid #0c0c0c; */
+  border-bottom: 10px solid #0c0c0c;
+  color: #fff;
+  padding: 50px 0;
+  width: 100%;
+}
+
+.principal .formulario {
+  color: #212121;
+  text-align: center;
+}
+
+.principal .formulario input[type="text"] {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 75%;
+}
+
+.principal .formulario input[type="text"].error {
+  border: 5px solid #d32f2f;
+  color: red;
+}
+
+.principal .formulario .boton {
+  background-color: #ba2d0b;
+  background-image: linear-gradient(
+    319deg,
+    #ba2d0b 0%,
+    #fe7f2d 37%,
+    #ffbf46 100%
+  );
+  border: 1px solid #d32f2f;
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  padding: 15px;
+  font-family: "Dela Gothic One", cursive, sans-serif;
+}
+
+.principal .formulario .boton:hover {
+  border: 1px solid #fff;
+}
+
+.forminput-areas {
+  margin: 10px;
+  padding: 15px;
+}
+
+/* - Tareas - */
+.tareas .lista {
+  list-style: none;
+}
+
+.tareas .lista li {
+  border-bottom: 1px solid #b6b6b6;
+}
+
+.tareas .lista li a {
+  color: #212121;
+  display: block;
+  padding: 20px 0;
+  text-decoration: none;
+}
+
+.tareas .lista li a:hover {
+  text-decoration: line-through;
+}
+
+.recapp {
+  color: #0c0c0c;
+  text-decoration: none;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.rec-url {
+  border-radius: 50%;
+}
+
+/* VINYL PLAYER TOOL STYLE */
+
+.vinyl-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffd644 0%, #bc6f00 100%);
+  border-bottom: 10px solid #0c0c0c;
+}
+
+.vinyl-player {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  width: 1063px;
+  height: 928px;
+}
+
+.audiolauncher {
+  position: absolute;
+  width: 12rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* audiolauncher first fixed properties were :
+  width: 108px
+  height:108px 
+  left: 558px;
+  top: 405px;
+  or
+  top: 540px;
+  top: 433.34px; */
+
+.audiolauncher:hover {
+  width: 18rem;
+  height: 2rem;
+}
+
+/* COVER IMAGE STYLE */
+
+.coverimg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* PAD STYLE */
+
+.pad {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  border-top: 10px solid #0c0c0c;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 100%;
+  min-height: 10vh;
+  max-height: 30vh;
+  border-top: 10px solid #0c0c0c;
+  background: linear-gradient(319deg, #ba2d0b 0%, #fe7f2d 37%, #ffbf46 100%);
+
+  /* background: url("https://www.pngkey.com/png/full/164-1641579_music-is-the-divine-way-og-telling-beautiful.png"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+}
