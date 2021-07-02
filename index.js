@@ -42,3 +42,4 @@ app.post('/api/rec/updatefav', (req,res) => {
 
 
 app.listen(3000, () => console.log("Server Up and running"));
+// app.listen(process.env.PORT || 3000, () => console.log("Server Up and running"));
